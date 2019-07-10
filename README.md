@@ -1,5 +1,7 @@
 This code produces the non-anonymized version of the CNN / Daily Mail summarization dataset, as used in the ACL 2017 paper *[Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/pdf/1704.04368.pdf)*. It processes the dataset into the binary format expected by the [code](https://github.com/abisee/pointer-generator) for the Tensorflow model.
 
+
+I have modified this code to generate raw text file into `finished_files` subdir in order to use Fairseq tool.
 # Instructions
 
 ## 1. Download data
@@ -34,6 +36,4 @@ replacing `/path/to/cnn/stories` with the path to where you saved the `cnn/stori
 
 This script will do several things:
 * The directories `cnn_stories_tokenized` and `dm_stories_tokenized` will be created and filled with tokenized versions of `cnn/stories` and `dailymail/stories`. This may take some time. ***Note**: you may see several `Untokenizable:` warnings from Stanford Tokenizer. These seem to be related to Unicode characters in the data; so far it seems OK to ignore them.*
-* For each of the url lists `all_train.txt`, `all_val.txt` and `all_test.txt`, the corresponding tokenized stories are read from file, lowercased and written to serialized binary files `train.bin`, `val.bin` and `test.bin`. These will be placed in the newly-created `finished_files` directory. This may take some time.
-* Additionally, a `vocab` file is created from the training data. This is also placed in `finished_files`.
-* Lastly, `train.bin`, `val.bin` and `test.bin` will be split into chunks of 1000 examples per chunk. These chunked files will be saved in `finished_files/chunked` as e.g. `train_000.bin`, `train_001.bin`, ..., `train_287.bin`. This should take a few seconds. You can use either the single files or the chunked files as input to the Tensorflow code (see considerations [here](https://github.com/abisee/cnn-dailymail/issues/3)).
+* For each of the url lists `all_train.txt`, `all_val.txt` and `all_test.txt`, the corresponding tokenized stories are read from file, lowercased and written to `train.source/target`, `val.source/target` and `test.source/target`. These will be placed in the newly-created `finished_files` directory. This may take some time.
