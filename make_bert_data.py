@@ -162,5 +162,5 @@ if __name__ == '__main__':
 
     # Read the tokenized stories, do a little postprocessing then write to bin files
     finalize(all_test_urls, os.path.join(finished_files_dir, "test.bert"))
-    finalize(all_val_urls, os.path.join(finished_files_dir, "valid.bert"))
+    finalize(all_val_urls, os.path.join(finished_files_dir, "val.bert"))
     finalize(all_train_urls, os.path.join(finished_files_dir, "train.bert"))
